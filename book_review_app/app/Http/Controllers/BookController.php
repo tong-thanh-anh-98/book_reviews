@@ -68,8 +68,8 @@ class BookController extends Controller
 
             $manager = new ImageManager(Driver::class);
             $img = $manager->read(public_path('uploads/books/'.$bookImage));
-
-            $img->resize(750);
+            // $img->resize(900);
+            $img->cover(990, 1400);
             $img->save(public_path('uploads/books/thumbnail/'.$bookImage));
         }
 
@@ -113,9 +113,9 @@ class BookController extends Controller
 
         // Update book image
         if (!empty($request->image)) {
-            // This will delate old book image from folder books
-            File::delete(public_path('upoads/books/' .$book->image));
-            File::delete(public_path('upoads/books/thumbnail/' .$book->image));
+            // delete image
+            File::delete(public_path('uploads/books/'.$book->image));
+            File::delete(public_path('uploads/books/thumbnail/'.$book->image));
 
             $image = $request->image;
             $ext = $image->getClientOriginalExtension();
@@ -127,7 +127,8 @@ class BookController extends Controller
             // Gennerate image thumbnail here
             $manager = new ImageManager(Driver::class);
             $img = $manager->read(public_path('uploads/books/'.$bookImage));
-            $img->resize(750);
+            // $img->resize(900);
+            $img->cover(990, 1400);
             $img->save(public_path('uploads/books/thumbnail/'.$bookImage));
         }
 
@@ -140,19 +141,17 @@ class BookController extends Controller
 
         if ($book == null) {
             session()->flash('error', 'Book not found');
-
             return response()->json([
                 'status' => false,
                 'message' => 'Book not found',
             ]);
         } else {
-            // This will delate old book image from folder books
-            File::delete(public_path('upoads/books/' .$book->image));
-            File::delete(public_path('upoads/books/thumbnail/' .$book->image));
+            // delete image
+            File::delete(public_path('uploads/books/'.$book->image));
+            File::delete(public_path('uploads/books/thumbnail/'.$book->image));
             $book->delete();
 
             session()->flash('success', 'Book deleted successfully');
-
             return response()->json([
                 'status' => true,
                 'message' => 'Book deleted successfully',

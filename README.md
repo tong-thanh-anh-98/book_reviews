@@ -12,10 +12,13 @@
 - php artisan make:view books\list
 - php artisan make:view books\create
 - php artisan make:view books\edit
+- php artisan make:view home
+- php artisan make:view detail
 
 + controllers:
 - php artisan make:controller AccountController
 - php artisan make:controller BookController
+- php artisan make:controller HomeController
 
 + database:
 - update users table: php artisan make:migration alter_users_table

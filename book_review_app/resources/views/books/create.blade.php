@@ -23,15 +23,15 @@
                         </div>
                         <div class="mb-3">
                             <label for="author" class="form-label">Author</label>
-                            <input type="text" class="form-control @error('author') is-invalid @enderror" placeholder="Author"  name="author" id="author" value="{{ old('author') }}"/>
+                            <input type="text" class="form-control @error('author') is-invalid @enderror" placeholder="Author"  name="author" id="author" value="Tác Giả: {{ old('author') }}"/>
                             @error('author')
                                 <p class="invalid-feedback">{{ $message }}</p>
                             @enderror
                         </div>
 
                         <div class="mb-3">
-                            <label for="description" class="form-label">Description</label>
-                            <textarea name="description" id="description" class="form-control" placeholder="Description" cols="30" rows="5">{{ old('description') }}</textarea>
+                            <label for="discription" class="form-label">Discription</label>
+                            <textarea name="discription" id="discription" class="form-control" placeholder="discription" cols="30" rows="5">{{ old('discription') }}</textarea>
                         </div>
 
                         <div class="mb-3">
@@ -54,6 +54,6 @@
                 </div>
             </div>                
         </div>
-    </div>       
+    </div>
 </div>
 @endsection

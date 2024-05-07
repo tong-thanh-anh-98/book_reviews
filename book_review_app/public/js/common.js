@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
 // clear search
 function clearKeywordAndRedirect() {
-    document.getElementById('keyword').value = '';
-    document.getElementById('searchForm').submit();
+    const keywordInput = document.getElementById('keyword');
+    keywordInput.value = '';
+    keywordInput.form.submit();
 }

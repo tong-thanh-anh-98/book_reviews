@@ -22,7 +22,7 @@
                                 <input type="text" class="form-control" name="keyword" id="keyword" value="{{ Request::get('keyword') }}" placeholder="Search keyword">
                                 <button type="submit" class="btn btn-primary ms-2">Search</button>
                                 <!-- <a href="{{ route('books.index') }}" class="btn btn-secondary ms-2">Clear</a> -->
-                                <button type="button" class="btn btn-secondary ms-2" onclick="clearKeywordAndRedirect()">Clear</button>
+                                <button class="btn btn-secondary ms-2" onclick="clearKeywordAndRedirect()">Clear</button>
                             </div>
                         </form>
                     </div>       
@@ -53,7 +53,7 @@
                                                 <a href="#" class="btn btn-success btn-sm"><i class="fa-regular fa-star"></i></a>
                                                 <a href="{{ route('books.edit', $book->id) }}" class="btn btn-primary btn-sm"><i class="fa-regular fa-pen-to-square"></i>
                                                 </a>
-                                                <a href="" onclick="deleteBook({{ $book->id }});" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></a>
+                                                <a href="#" onclick="deleteBook({{ $book->id }});" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></a>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -74,17 +74,17 @@
 
 @section('script')
     <script>
-        function deleteBook($id) {
+        function deleteBook(id) {
             if (confirm('Are you wan to delete?')) {
                 $.ajax({
-                    type: 'delete',
                     url: '{{ route('books.destroy') }}',
+                    type: 'delete',
                     data: {id:id},
                     headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]')
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
                     },
                     success: function (response) {
-                        window.location.href = "{{ route('books.index') }}";
+                        window.location.href = '{{ route('books.index') }}';
                     }
                 });
             }
